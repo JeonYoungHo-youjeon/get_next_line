@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youjeon <youjeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 11:51:40 by youjeon           #+#    #+#             */
-/*   Updated: 2021/06/08 16:58:36 by youjeon          ###   ########.fr       */
+/*   Updated: 2021/06/15 16:49:23 by youjeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int		get_newline(char *backup)
 {
@@ -26,17 +26,17 @@ int		get_newline(char *backup)
 	return (0);
 }
 
-int		static_split_newline(int newline_pos, char **line, char *backup)
+int		static_split_newline(int newline_pos, char **line, char **backup)
 {
 	char	*tmp;
 	int		length;
 
-	length = ft_strlen(backup[newline_pos]);
-	backup[newline_pos] = '\0';
+	length = ft_strlen(*backup);
+	(*backup)[newline_pos] = 0;
 	*line = ft_strdup(*backup);
 	tmp = ft_substr(*backup, newline_pos, length - newline_pos);
-	free(backup);
-	backup = tmp;
+	free(*backup);
+	*backup = tmp;
 	return (1);
 }
 
