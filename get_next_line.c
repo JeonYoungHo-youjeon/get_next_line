@@ -6,7 +6,7 @@
 /*   By: youjeon <youjeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 11:51:40 by youjeon           #+#    #+#             */
-/*   Updated: 2021/06/15 18:43:29 by youjeon          ###   ########.fr       */
+/*   Updated: 2021/06/16 12:32:33 by youjeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int		value_return(char **backup, char **line, int read_num)
 		return (-1);
 	if (*backup && (newline_idx = get_newline(*backup)) >= 0)
 	{
-		 get_newline(*backup);
+		get_newline(*backup);
 		return (static_split_newline(newline_idx, line, backup));
 	}
 	else if (*backup)
