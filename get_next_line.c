@@ -6,7 +6,7 @@
 /*   By: youjeon <youjeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 11:51:40 by youjeon           #+#    #+#             */
-/*   Updated: 2021/06/16 12:32:33 by youjeon          ###   ########.fr       */
+/*   Updated: 2021/06/16 16:28:02 by youjeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ int		static_split_newline(int newline_pos, char **line, char **backup)
 
 	length = ft_strlen(*backup);
 	(*backup)[newline_pos] = 0;
-	*line = ft_strdup(*backup);
+	if (*line = ft_strdup(*backup))
+		return (-1);
 	tmp = ft_substr(*backup, newline_pos + 1, length - newline_pos - 1);
 	free(*backup);
 	*backup = tmp;
@@ -47,10 +48,7 @@ int		value_return(char **backup, char **line, int read_num)
 	if (read_num < 0)
 		return (-1);
 	if (*backup && (newline_idx = get_newline(*backup)) >= 0)
-	{
-		get_newline(*backup);
 		return (static_split_newline(newline_idx, line, backup));
-	}
 	else if (*backup)
 	{
 		*line = *backup;
@@ -74,7 +72,8 @@ int		get_next_line(int fd, char **line)
 	while ((read_num = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
 		buf[read_num] = '\0';
-		backup[fd] = ft_strjoin(backup[fd], buf);
+		if (!(backup[fd] = ft_strjoin(backup[fd], buf)))
+			return (-1);
 		if (get_newline(backup[fd]) >= 0)
 			break ;
 	}
